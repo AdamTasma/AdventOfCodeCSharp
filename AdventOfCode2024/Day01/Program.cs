@@ -38,5 +38,25 @@ int Part1(string[] input)
 
 int Part2(string[] input)
 {
-    return 0;
+    List<int> firstList = new List<int>();
+    List<int> secondList = new List<int>();
+    int totalSimilarityScore = 0;
+
+    foreach (string line in input)
+    {
+        var mySplit = line.Split("   ");
+        firstList.Add(int.Parse(mySplit[0]));
+        secondList.Add(int.Parse(mySplit[1]));
+    }
+
+    foreach (int locationId in firstList)
+    {
+        int occurancesInSecondList = secondList.Count(n => n == locationId);
+
+        var similarityScore = locationId * occurancesInSecondList;
+        totalSimilarityScore += similarityScore;
+    }
+
+
+    return totalSimilarityScore;
 }
